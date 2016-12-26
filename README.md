@@ -12,7 +12,7 @@ const indexOfItems = require( './buffer-index-of-items.js' )
 console.log( indexOfItems( buffer ), indexOfItems.index, indexOfItems.lastIndex );  // 1, 0, 3
 console.log( indexOfItems( buffer ), indexOfItems.index, indexOfItems.lastIndex );  // 2, 5, 8
 console.log( indexOfItems( buffer ), indexOfItems.index, indexOfItems.lastIndex );  // 3, 10, 15
-console.log( indexOfItems( buffer ), indexOfItems.index, indexOfItems.lastIndex );  // 4, 17, 21
+console.log( indexOfItems( buffer ), indexOfItems.index, indexOfItems.lastIndex );  // 4, 20, 24
 console.log( indexOfItems( buffer ), indexOfItems.index, indexOfItems.lastIndex );  // undefined, 0, 0
 
 ```
@@ -27,7 +27,7 @@ const indexOfItems = require( './buffer-index-of-items.js' )
 console.log( indexOfItems( map, buffer ) );   // 0
 console.log( indexOfItems( map, buffer ) );   // 5
 console.log( indexOfItems( map, buffer ) );   // 10
-console.log( indexOfItems( map, buffer ) );   // 15
+console.log( indexOfItems( map, buffer ) );   // 20
 console.log( indexOfItems( map, buffer ) );   // -1
 ```
 
