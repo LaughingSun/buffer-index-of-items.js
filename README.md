@@ -21,17 +21,13 @@ or:
 ```
 const indexOfItems = require( './buffer-index-of-items.js' )
     , buffer = Buffer.from( 'one, two, three and four.  Can I have a little more?' )
+    , map = {'one': 1, 'two': 2, 'three' : 3, 'four': 4}
     ;
-console.log( indexOfItems( {'one': 1, 'two': 2, 'three' : 3, 'four': 4}
-    , buffer ) );   // 0
-console.log( indexOfItems( {'one': 1, 'two': 2, 'three' : 3, 'four': 4}
-    , buffer ) );   // 5
-console.log( indexOfItems( {'one': 1, 'two': 2, 'three' : 3, 'four': 4}
-    , buffer ) );   // 10
-console.log( indexOfItems( {'one': 1, 'two': 2, 'three' : 3, 'four': 4}
-    , buffer ) );   // 15
-console.log( indexOfItems( {'one': 1, 'two': 2, 'three' : 3, 'four': 4}
-    , buffer ) );   // -1
+console.log( indexOfItems( map, buffer ) );   // 0
+console.log( indexOfItems( map, buffer ) );   // 5
+console.log( indexOfItems( map, buffer ) );   // 10
+console.log( indexOfItems( map, buffer ) );   // 15
+console.log( indexOfItems( map, buffer ) );   // -1
 ```
 
 Hope it solves all your simplier buffer parsing problems.
