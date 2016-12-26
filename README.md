@@ -5,7 +5,8 @@ But you can use buffer-index-of-items, which will make you super sexy.
 
 There are 2 ways to use it:
 ```
-const indexOfItems = require( './buffer-index-of-items.js' ).create( {'one': 1, 'two': 2, 'three' : 3, 'four': 4} )
+const indexOfItems = require( './buffer-index-of-items.js' )
+        .create( {'one': 1, 'two': 2, 'three' : 3, 'four': 4} )
     , buffer = Buffer.from( 'one, two, three and four.  Can I have a little more?' )
     ;
 console.log( indexOfItems( buffer ), indexOfItems.index, indexOfItems.lastIndex );  // 1, 0, 3
