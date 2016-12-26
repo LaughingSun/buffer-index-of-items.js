@@ -15,8 +15,8 @@ function bufferIndexOf ( map, buffer, index, length, offset ) {
   var fn;
   (fn = _cache.get( map ))
       || _cache.set( map, fn = lookupCreate( map ) );
-  fn.lastIndex = fn.index = fn.offset = 0;
-  return fn( buffer, index, length, offset )
+  fn.lastIndex = fn.offset = 0;
+  return (undefined !== fn( buffer, index, length, offset )) ? fn.index : -1
 }
 
 
