@@ -83,10 +83,10 @@ token instead of an array.
 const bufIndexOf = require( './buffer-index-of-items.js' )
     , map = { start: "starting token", finish: "ending token" }
     , buf = Buffer.from( 'Most things worth starting are also worth finishing.' )
-    , indexOf = bufIndexOf.create( map )
+    , tokenOf = bufIndexOf.create( map )
     ;
-console.log( indexOf( buf ), indexOf.index, indexOf.lastIndex );  // "starting token", 19, 24
-console.log( indexOf( buf ), indexOf.index, indexOf.lastIndex );  // "ending token", 53, 59
-console.log( indexOf( buf ), indexOf.index, indexOf.lastIndex );  // undefined, 0, 0
+console.log( tokenOf( buf ), tokenOf.index, tokenOf.lastIndex );  // "starting token", 19, 24
+console.log( tokenOf( buf ), tokenOf.index, tokenOf.lastIndex );  // "ending token", 53, 59
+console.log( tokenOf( buf ), tokenOf.index, tokenOf.lastIndex );  // undefined, 0, 0
 ```
 
