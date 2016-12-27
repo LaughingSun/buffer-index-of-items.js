@@ -1,7 +1,7 @@
 # buffer-index-of-items.js
 For when you need to find a set of tokens in a buffer.  You can't use RegExp on Buffers without casting it to a string.
 
-But you can use buffer-index-of-items, which will make you super sexy.
+But you can use buffer-index-of-items, which will make you super sexy.  See the API documents for [MD](buffer-index-of-items.js/docs/README.md) or [HTML](buffer-index-of-items.js/docs/index.html).
 
 There are 2 ways to use it:
 ```
