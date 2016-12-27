@@ -17,6 +17,7 @@ const bufferIndexOf = require( './buffer-index-of-items.js' )
             }
     , indexOfWords = bufferIndexOf.create( words )
     , VALUE = bufferIndexOf.VALUE
+    , LOOKUP = bufferIndexOf.LOOKUP
     ;
 
 printerase( );
@@ -24,7 +25,7 @@ cursor.goto( 1, 2 );
 test1( );
 test1( 'nine people love our module on nights like these' );
 // console.log( util.inspect(indexOfWords.lookup, {showHidden: true, depth: null}) );
-printlookup( indexOfWords.lookup, stdout.columns / 2 | 0 );
+printlookup( indexOfWords[LOOKUP], stdout.columns * 2 / 3 | 0 );
 cursor.goto( 1,stdout.rows - 2 );
 
 

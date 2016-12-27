@@ -3,15 +3,17 @@
 const assert = console.assert.bind( console )
     , _cache = new WeakMap
     , VALUE  = Symbol( 'value-key' )
+    , LOOKUP = Symbol( 'lookup-key' )
     ;
 
-module.exports = bufferIndexOf;
+module.exports = indexOf;
 
-bufferIndexOf.create = bufferIndexOfCreate;
-bufferIndexOf.VALUE = VALUE;
+indexOf.create = indexOfCreate;
+indexOf.VALUE = VALUE;
+indexOf.LOOKUP = LOOKUP;
 
 
-function bufferIndexOf ( map, buffer, index, length, offset ) {
+function indexOf ( map, buffer, index, length, offset ) {
   var fn;
   (fn = _cache.get( map ))
       || _cache.set( map, fn = lookupCreate( map ) );
@@ -20,11 +22,14 @@ function bufferIndexOf ( map, buffer, index, length, offset ) {
 }
 
 
-function bufferIndexOfCreate ( map ) {
+function indexOfCreate ( map ) {
   var lookup = {}
+      , minlen = Number.MAX_SAFE_INTEGER
       , fn, keys
       ;
   
+  assert( map instanceof Object
+      , 'invalid map (first argument), Object or Map expected' );
   ( ( map instanceof Map ) ? map.keys( ) : Object.keys( map ) )
       .forEach( key => {
         var lu = lookup;
@@ -37,9 +42,10 @@ function bufferIndexOfCreate ( map ) {
           throw new Error( 'unsupported key type ' + typeof key );
         }
         lu[VALUE] = ( map instanceof Map ) ? map.get( key ) : map[key];
+        minlen > key.length && (minlen = key.length)
       } );
   
-  (fn = function ( buffer, index, length, offset ) {
+  fn = ( buffer, index, length, offset ) => {
         var value = undefined
             , valuei = undefined
             , c, i, lu
@@ -60,7 +66,7 @@ function bufferIndexOfCreate ( map ) {
         
         if ( (length -= offset) > 0 ) {
           (index -= offset) < 0 && (index = 0);
-          while ( index < length ) {
+          while ( index < length - minlen ) {
             i = index;
             lu = lookup;
             // console.log( buffer[i] + ' at ' + i );
@@ -83,8 +89,10 @@ function bufferIndexOfCreate ( map ) {
             index++
           }
         }
-      }).lookup = lookup;
+      };
   
-  return fn;
+  fn[LOOKUP] = lookup;
+  
+  return fn
 }
 
