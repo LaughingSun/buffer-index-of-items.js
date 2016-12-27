@@ -10,22 +10,34 @@ bufferIndexOf.create(map) - Creates a indexOf function that follows more of a Re
 
 Tradition indexOf type call.
 
-This uses caching for the lookup map and function, it can be pretty
-inefficient if you are using different map objects for each call, even if 
-they have the same items in them.
-
+This uses caching for the lookup map and function, it can be pretty inefficient 
+if you are using different map objects for each call, even if they have the 
+same items in them.  Note: use the bufferIndexOf.create(map) for a dedicated 
+function if you have predefined token sets you wish to search for.
 
 ### Params:
 
-* **Map|Object** *map* - the map of tokens to search for
-* **Buffer** *buffer* - buffer to search
-* **number** *[index]* - starting index
-* **number** *[length]* - ending index
-* **number** *[offset]* - subtracted from all indexes to allow for                              partial buffer searching
+* **Map|Object** *map* - the map of tokens to search for.
+* **Buffer** *buffer* - buffer to search.
+* **number** *[index]* - starting index.
+* **number** *[length]* - ending index.
+* **number** *[offset]* - subtracted from all indexes to allow for partial buffer searching.
 
 ### Return:
 
 * **number** - the index of the fould token
+
+### Example:
+
+```
+const bufIndexOf = require( 'buffer-index-of-items.js' )
+    , map = { start: "starting token", finish: "ending token" }
+    , buf = Buffer.from( 'Most things worth starting are also worth finishing.' )
+    ;
+console.log( bufIndexOf( map, buf ) );  // 19
+console.log( bufIndexOf( map, buf ) );  // 53
+console.log( bufIndexOf( map, buf ) );  // -1
+```
 
 ## bufferIndexOf.create(map)
 
@@ -37,7 +49,7 @@ the same items in them.
 
 ### Params:
 
-* **Map|Object** *map* - the map of tokens to search for
+* **Map|Object** *map* - the map of tokens to search for.
 
 ### Return:
 
@@ -59,9 +71,22 @@ token instead of an array.
 * **Buffer** *buffer* - buffer to search.
 * **number** *[index]* - starting index.
 * **number** *[length]* - ending inde .
-* **number** *[offset]* - subtracted from all indexes to allow for                              partial buffer searching.
+* **number** *[offset]* - subtracted from all indexes to allow for partial buffer searching.
 
 ### Return:
 
 * **token** - the index of the found token.
+
+### Example:
+
+```
+const bufIndexOf = require( 'buffer-index-of-items.js' )
+    , map = { start: "starting token", finish: "ending token" }
+    , buf = Buffer.from( 'Most things worth starting are also worth finishing.' )
+    , indexOf = bufIndexOf.create( map )
+    ;
+console.log( indexOf( buf ), indexOf.index, indexOf.lastIndex );  // "starting token", 19, 24
+console.log( indexOf( buf ), indexOf.index, indexOf.lastIndex );  // "ending token", 53, 59
+console.log( indexOf( buf ), indexOf.index, indexOf.lastIndex );  // undefined, 0, 0
+```
 
