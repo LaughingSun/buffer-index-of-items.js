@@ -8,6 +8,8 @@ const assert = console.assert.bind( console )
     , MAXLENGTH = Symbol( 'max-length-key' )
     ;
 
+/** @module buffer-index-of-items */
+
 module.exports = indexOf;
 
 indexOf.create = indexOfCreate;
@@ -16,7 +18,42 @@ indexOf.LOOKUP = LOOKUP;
 indexOf.MINLENGTH = MINLENGTH;
 indexOf.MAXLENGTH = MAXLENGTH;
 
+/** An IndexOf items function
+ *
+ * This uses caching for the lookup map and function, it can be pretty
+ * inificiate if you are using a different map objects, even if they have
+ * the same items in them.
+ * 
+ * @callback indexOf
+ * @extends Function
+ * @prop {number} lastIndex  - the index to start from (pre call)
+ *                                  and ended at (post call).
+ * @prop {number} index      - the index of the token found.
+ * 
+ * @param {Buffer} buffer     - buffer to search.
+ * @param {number} [index]    - starting index.
+ * @param {number} [length]   - ending inde .
+ * @param {number} [offset]   - subtracted from all indexes to allow for
+ *                              partial buffer searching.
+ * @returns {token}  - the index of the fould token.
+ */
 
+
+/** Tradition indexOf type call.
+ *
+ * This uses caching for the lookup map and function, it can be pretty
+ * inificiate if you are using a different map objects, even if they have
+ * the same items in them.
+ * 
+ * @function
+ * @param {Map|Object} map    - the map of tokens
+ * @param {Buffer} buffer     - buffer to search
+ * @param {number} [index]    - starting index
+ * @param {number} [length]   - ending index
+ * @param {number} [offset]   - subtracted from all indexes to allow for
+ *                              partial buffer searching
+ * @returns {number}  - the index of the fould token
+ */
 function indexOf ( map, buffer, index, length, offset ) {
   var fn;
   (fn = _cache.get( map ))
@@ -26,6 +63,17 @@ function indexOf ( map, buffer, index, length, offset ) {
 }
 
 
+/** Generate a indexOf function for the given map
+ *
+ * This uses caching for the lookup map and function, it can be pretty
+ * inificiate if you are using a different map objects, even if they have
+ * the same items in them.
+ * 
+ * @function
+ * @param {Map|Object} map    - the map of tokens
+ *                              partial buffer searching
+ * @returns {indexOf}        - the indexOf function
+ */
 function indexOfCreate ( map ) {
   var lookup = {}
       , minlen = Number.MAX_SAFE_INTEGER

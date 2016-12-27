@@ -1,12 +1,11 @@
 /*
- * run from node cli: node test-buffer-index-of-items.js
+ * run from node cli: node test-min-buffer-index-of-items.js
  * requires: ansi module.  "npm install ansi"
  */
 
 "use strict";
 
-const bufferIndexOf = require( './buffer-index-of-items.js' )
-    , bufferIndexOfMin = require( './buffer-index-of-items.min.js' )
+const bufferIndexOf = require( './buffer-index-of-items.min.js' )
     , util = require('util')
     , ansi = require( 'ansi' )
     , stdout = process.stdout
