@@ -2,8 +2,9 @@
 
 ## exports
 
-bufferIndexOf(map, buffer, [index], [length], [offset]) - An IndexOf items function
-bufferIndexOf.create(map) - An IndexOf items function
+bufferIndexOf(map, buffer, [index], [length], [offset]) - An IndexOf items function that returns an index
+
+bufferIndexOf.create(map) - Creates a indexOf function that follows more of a RegExp usage.
 
 ## bufferIndexOf(map, buffer, [index], [length], [offset])
 
