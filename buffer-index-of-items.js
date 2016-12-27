@@ -4,6 +4,8 @@ const assert = console.assert.bind( console )
     , _cache = new WeakMap
     , VALUE  = Symbol( 'value-key' )
     , LOOKUP = Symbol( 'lookup-key' )
+    , MINLENGTH = Symbol( 'min-length-key' )
+    , MAXLENGTH = Symbol( 'max-length-key' )
     ;
 
 module.exports = indexOf;
@@ -11,6 +13,8 @@ module.exports = indexOf;
 indexOf.create = indexOfCreate;
 indexOf.VALUE = VALUE;
 indexOf.LOOKUP = LOOKUP;
+indexOf.MINLENGTH = MINLENGTH;
+indexOf.MAXLENGTH = MAXLENGTH;
 
 
 function indexOf ( map, buffer, index, length, offset ) {
@@ -25,6 +29,7 @@ function indexOf ( map, buffer, index, length, offset ) {
 function indexOfCreate ( map ) {
   var lookup = {}
       , minlen = Number.MAX_SAFE_INTEGER
+      , maxlen = 0
       , fn, keys
       ;
   
@@ -43,6 +48,7 @@ function indexOfCreate ( map ) {
         }
         lu[VALUE] = ( map instanceof Map ) ? map.get( key ) : map[key];
         minlen > key.length && (minlen = key.length)
+        maxlen < key.length && (maxlen = key.length)
       } );
   
   fn = ( buffer, index, length, offset ) => {
@@ -92,6 +98,8 @@ function indexOfCreate ( map ) {
       };
   
   fn[LOOKUP] = lookup;
+  fn[MINLENGTH] = minlen;
+  fn[MAXLENGTH] = maxlen;
   
   return fn
 }
