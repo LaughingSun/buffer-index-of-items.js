@@ -30,7 +30,7 @@ function if you have predefined token sets you wish to search for.
 ### Example:
 
 ```
-const bufIndexOf = require( 'buffer-index-of-items.js' )
+const bufIndexOf = require( './buffer-index-of-items.js' )
     , map = { start: "starting token", finish: "ending token" }
     , buf = Buffer.from( 'Most things worth starting are also worth finishing.' )
     ;
@@ -80,7 +80,7 @@ token instead of an array.
 ### Example:
 
 ```
-const bufIndexOf = require( 'buffer-index-of-items.js' )
+const bufIndexOf = require( './buffer-index-of-items.js' )
     , map = { start: "starting token", finish: "ending token" }
     , buf = Buffer.from( 'Most things worth starting are also worth finishing.' )
     , indexOf = bufIndexOf.create( map )
