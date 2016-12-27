@@ -17,7 +17,7 @@ they have the same items in them.
 
 ### Params:
 
-* **Map|Object** *map* - the map of tokens
+* **Map|Object** *map* - the map of tokens to search for
 * **Buffer** *buffer* - buffer to search
 * **number** *[index]* - starting index
 * **number** *[length]* - ending index
@@ -37,7 +37,7 @@ the same items in them.
 
 ### Params:
 
-* **Map|Object** *map* - the map of tokens                              partial buffer searching
+* **Map|Object** *map* - the map of tokens to search for
 
 ### Return:
 
@@ -45,7 +45,9 @@ the same items in them.
 
 ## indexOf
 
-This is a generated function returned from bufferIndexOf.create(map).
+This is a generated function returned from bufferIndexOf.create(map).  It follows more the 
+style of the RegExp#match method with a global flag except that it only returns a single 
+token instead of an array.
 
 ### Properties:
 
@@ -61,5 +63,5 @@ This is a generated function returned from bufferIndexOf.create(map).
 
 ### Return:
 
-* **token** - the index of the fould token.
+* **token** - the index of the found token.
 
